@@ -16,13 +16,20 @@
   "homepage": "https://github.com/th3c0d3br34ker/react-nextjs-template#readme",
   "dependencies": {
     "next": "^12.0.10",
+    "next-session": "^4.0.4",
+    "otplib": "^12.0.1",
+    "qrcode": "^1.5.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "sqlite3": "^5.0.2"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "devDependencies": {
+    "unimported": "^1.19.1"
   }
 }
