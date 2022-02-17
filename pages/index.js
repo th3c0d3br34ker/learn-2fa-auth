@@ -1,28 +1,29 @@
-import { getSession } from "../api-lib/next-session";
+import Link from "next/link";
 
 const IndexPage = ({ email }) => (
   <div>
     <h1>Hello, {email} </h1>
+    <Link href="/">Log Out</Link>
   </div>
 );
 
 export async function getServerSideProps({ query }) {
   const { email } = query;
 
-  // if (email) {
+  if (email) {
+    return {
+      props: {
+        email,
+      },
+    };
+  }
+
   return {
-    props: {
-      email,
+    redirect: {
+      destination: "/auth/login",
+      permanent: true,
     },
   };
-  // }
-
-  // return {
-  //   redirect: {
-  //     destination: "/auth/login",
-  //     permanent: false,
-  //   },
-  // };
 }
 
 export default IndexPage;

@@ -2,6 +2,10 @@
 # Next build dir
 .next/
 
+### Database ###
+# SQLite
+*.sqlite
+
 ### Node ###
 # Logs
 logs

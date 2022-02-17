@@ -16,8 +16,6 @@ const SignUpPage = () => {
               className="form-control"
               id="email"
               name="email"
-              value="jainam@gmail.com"
-              readOnly
             />
           </div>
           <button type="submit" className="btn btn-primary">

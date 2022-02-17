@@ -6,7 +6,7 @@ const SetUp2FA = ({ email, qrCode }) => {
     <Layout title="Set Up 2FA">
       <div className="container mx-auto mt-4">
         <h1>Sign Up - Set 2FA</h1>
-        <form action="/api/login" method="POST">
+        <form action="/api/sign-up-2fa" method="POST">
           <p>
             Scan the QR Code in the Authenticator app then enter the code that
             you see in the app in the text field and click Submit.
@@ -14,10 +14,17 @@ const SetUp2FA = ({ email, qrCode }) => {
           <h1>Authenticating... {email}</h1>
           <img src={qrCode} className="img-fluid" />
           <div className="mb-3">
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              defaultValue={email}
+              hidden
+            />
             <label htmlFor="code" className="form-label">
               2FA Code
             </label>
-            <input hidden type="email" id="email" value={email} />
             <input type="text" className="form-control" id="code" name="code" />
           </div>
           <button type="submit" className="btn btn-primary">
@@ -36,21 +43,27 @@ export async function getServerSideProps({ query }) {
     const response = await fetch(
       "http://localhost:3000/api/get-2fa-qrcode?email=" + email
     );
-    const { qrCode } = await response.json();
+    const body = await response.json();
+
+    const { success } = body;
+
+    if (success) {
+      const { qrCode } = body;
+
+      return {
+        props: {
+          email,
+          qrCode,
+        },
+      };
+    }
 
     return {
-      props: {
-        email,
-        qrCode,
+      redirect: {
+        destination: body.fallback,
       },
     };
   }
-
-  return {
-    props: {
-      email,
-    },
-  };
 
   // return {
   //   redirect: {

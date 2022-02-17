@@ -1,3 +1,5 @@
+import { authenticator } from "otplib";
+
 export const verifyLogin = (db, { email, code }, { req, res }) => {
   db.serialize(() => {
     db.get("SELECT secret FROM users WHERE email = ?", [email], (err, row) => {

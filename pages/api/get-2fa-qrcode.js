@@ -7,8 +7,6 @@ import { connectDB } from "../../api-lib/database/db";
 const handler = (req, res) => {
   const { email } = req.query;
 
-  console.log("Get 2FA Email: ", email);
-
   const db = connectDB();
 
   db.serialize(() => {
@@ -18,7 +16,7 @@ const handler = (req, res) => {
       }
 
       if (!row) {
-        return res.redirect("/");
+        return res.json({ success: false, fallback: "/" });
       }
 
       QRCode.toDataURL(
