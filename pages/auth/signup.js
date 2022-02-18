@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Layout from "../../container/layout";
+import Layout from "container/layout";
 
 const SignUpPage = () => {
   return (
     <Layout title="Sign up">
       <div className="container mx-auto mt-4">
         <h1>Sign Up</h1>
-        <form action="/api/sign-up" method="POST">
+        <form action="/api/auth/sign-up" method="POST">
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email

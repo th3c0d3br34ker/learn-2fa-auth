@@ -1,5 +1,5 @@
-import { getSession } from "../../api-lib/next-session";
-import Layout from "../../container/layout";
+/* eslint-disable @next/next/no-img-element */
+import Layout from "container/layout";
 
 const SetUp2FA = ({ email, qrCode }) => {
   return (
@@ -12,7 +12,7 @@ const SetUp2FA = ({ email, qrCode }) => {
             you see in the app in the text field and click Submit.
           </p>
           <h1>Authenticating... {email}</h1>
-          <img src={qrCode} className="img-fluid" />
+          <img src={qrCode} alt="" className="img-fluid" />
           <div className="mb-3">
             <input
               type="email"
