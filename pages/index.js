@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { withIronSessionSsr } from "iron-session/next";
+import { sessionOptions } from "lib/session";
 
 const IndexPage = ({ user }) => (
   <div>
@@ -7,27 +9,32 @@ const IndexPage = ({ user }) => (
       <br />
       <pre>{JSON.stringify(user, null, 2)}</pre>
     </h1>
-    <Link href="/">Log Out</Link>
+    <Link href="/api/logout">Log Out</Link>
   </div>
 );
 
-export async function getServerSideProps({ req }) {
-  const { user } = req.session;
+const myGetServerSideProps = async ({ req, res }) => {
+  const user = req.session.user;
 
-  if (user) {
+  if (user === undefined) {
+    res.setHeader("location", "/auth/login");
+    res.statusCode = 302;
+    res.end();
     return {
       props: {
-        user,
+        user: { isLoggedIn: false, login: "", avatarUrl: "" },
       },
     };
   }
 
   return {
-    redirect: {
-      destination: "/auth/login",
-      permanent: true,
-    },
+    props: { user: req.session.user },
   };
-}
+};
+
+export const getServerSideProps = withIronSessionSsr(
+  myGetServerSideProps,
+  sessionOptions
+);
 
 export default IndexPage;

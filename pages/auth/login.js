@@ -5,7 +5,7 @@ const LogInPage = () => (
   <Layout title="Log In">
     <div className="container mx-auto mt-4">
       <h1>Log In</h1>
-      <form action="/api/auth/login" method="POST">
+      <form action="/api/login" method="POST">
         <p>
           Open the Authenticator App and enter the code that you see in the app
           in the text field and click Log In.
@@ -19,6 +19,7 @@ const LogInPage = () => (
             className="form-control"
             id="email"
             name="email"
+            autoFocus
           />
         </div>
         <div className="mb-3">

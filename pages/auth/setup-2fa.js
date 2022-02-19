@@ -1,4 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+import { sessionOptions } from "lib/session";
+import { withIronSessionSsr } from "iron-session/next";
+
+// project imports
 import Layout from "container/layout";
 
 const SetUp2FA = ({ email, qrCode }) => {
@@ -11,7 +15,7 @@ const SetUp2FA = ({ email, qrCode }) => {
             Scan the QR Code in the Authenticator app then enter the code that
             you see in the app in the text field and click Submit.
           </p>
-          <h1>Authenticating... {email}</h1>
+          <h4>Authenticating... {email}</h4>
           <img src={qrCode} alt="" className="img-fluid" />
           <div className="mb-3">
             <input
@@ -25,7 +29,13 @@ const SetUp2FA = ({ email, qrCode }) => {
             <label htmlFor="code" className="form-label">
               2FA Code
             </label>
-            <input type="text" className="form-control" id="code" name="code" />
+            <input
+              type="text"
+              className="form-control"
+              id="code"
+              name="code"
+              autoFocus
+            />
           </div>
           <button type="submit" className="btn btn-primary">
             Submit
@@ -36,41 +46,34 @@ const SetUp2FA = ({ email, qrCode }) => {
   );
 };
 
-export async function getServerSideProps({ query }) {
-  const { email } = query;
+const myGetServerSideProps = async ({ req }) => {
+  const { email } = req.session.user;
 
-  if (email) {
-    const response = await fetch(
-      "http://localhost:3000/api/get-2fa-qrcode?email=" + email
-    );
-    const body = await response.json();
+  const response = await fetch(
+    "http://localhost:3000/api/get-2fa-qrcode?email=" + email
+  );
 
-    const { success } = body;
+  const data = await response.json();
 
-    if (success) {
-      const { qrCode } = body;
-
-      return {
-        props: {
-          email,
-          qrCode,
-        },
-      };
-    }
-
+  if (data.success) {
     return {
-      redirect: {
-        destination: body.fallback,
+      props: {
+        email,
+        qrCode: data.qrCode,
       },
     };
   }
 
-  // return {
-  //   redirect: {
-  //     destination: "/auth/signup",
-  //     permanent: false,
-  //   },
-  // };
-}
+  return {
+    redirect: {
+      destination: data.fallback,
+    },
+  };
+};
+
+export const getServerSideProps = withIronSessionSsr(
+  myGetServerSideProps,
+  sessionOptions
+);
 
 export default SetUp2FA;

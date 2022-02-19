@@ -34,6 +34,15 @@ export async function getMongoClient() {
   return global.mongo.client;
 }
 
+export async function connectToDatabase() {
+  const client = await getMongoClient();
+  const db = client.db("2fa-auth");
+  if (!indexesCreated) {
+    await createIndexes(db);
+  }
+  return db;
+}
+
 export default async function database(req, res, next) {
   if (!global.mongo.client) {
     global.mongo.client = new MongoClient();

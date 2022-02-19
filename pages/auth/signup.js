@@ -1,4 +1,6 @@
 import Link from "next/link";
+
+// project imports
 import Layout from "container/layout";
 
 const SignUpPage = () => {
@@ -6,7 +8,7 @@ const SignUpPage = () => {
     <Layout title="Sign up">
       <div className="container mx-auto mt-4">
         <h1>Sign Up</h1>
-        <form action="/api/auth/sign-up" method="POST">
+        <form action="/api/sign-up" method="POST">
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email
