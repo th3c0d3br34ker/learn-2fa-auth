@@ -4,6 +4,7 @@ import { withIronSessionSsr } from "iron-session/next";
 
 // project imports
 import Layout from "container/layout";
+import { API_URI } from "lib/config";
 
 const SetUp2FA = ({ email, qrCode }) => {
   return (
@@ -49,9 +50,7 @@ const SetUp2FA = ({ email, qrCode }) => {
 const myGetServerSideProps = async ({ req }) => {
   const { email } = req.session.user;
 
-  const response = await fetch(
-    "http://localhost:3000/api/get-2fa-qrcode?email=" + email
-  );
+  const response = await fetch(`${API_URI}/api/get-2fa-qrcode?email=${email}`);
 
   const data = await response.json();
 
