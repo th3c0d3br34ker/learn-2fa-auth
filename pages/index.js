@@ -7,11 +7,13 @@ const IndexPage = () => (
       <div className="max-w-3xl mx-auto text-center">
         <h1 className="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-indigo-300 to-blue-500">
           Two-Factor Authentication
+          <span className="sm:block">Time based OTP (TOPT)</span>
         </h1>
 
         <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-          illo tenetur fuga ducimus numquam ea!
+          Two Factor Authentication (2FA or TFA) is the technical term for the
+          process of requiring a user to verify their identity in two unique
+          ways before they are granted access to the system.
         </p>
       </div>
     </section>
@@ -20,6 +22,11 @@ const IndexPage = () => (
       <FAQItem
         summary="What is Two-Factor Authentication?"
         details="Two-Factor Authentication (2FA) is an extra layer of security used to make sure that people trying to gain access to an online account are who they say they are. First, a user will enter their username and a password. Then, instead of immediately gaining access, they will be required to provide another piece of information."
+      />
+
+      <FAQItem
+        summary="What is Time based OTP?"
+        details="Time-based One-Time Password (TOTP) is a single-use passcode typically used for authenticating users. The user is assigned a TOPT generator delivered as a hardware key fob or software token. The generator implements an algorithm that computes a one-time passcode using a secret shared with the authentication server and the current time – hence the name time-based OTP. The passcode is displayed to the user and is valid for a limited duration. Once expired, the passcode is no longer valid. The user enters a valid passcode into a login form, typically together with his username and regular password."
       />
 
       <FAQItem
