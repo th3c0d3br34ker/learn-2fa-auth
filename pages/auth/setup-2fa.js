@@ -11,16 +11,16 @@ const SetUp2FA = ({ email, qrCode }) => {
   return (
     <Layout title="Set Up 2FA">
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto">
-          <h1 className="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl font-extrabold text-center text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-indigo-300 to-blue-500">
             2FA Authenticator
           </h1>
 
-          <div className="flex flex-row rounded-lg shadow-2xl mt-6">
+          <div className="flex flex-row justify-end rounded-lg shadow-2xl mt-6">
             <form
               action="/api/sign-up-2fa"
               method="POST"
-              className="px-6 py-8 mb-0 space-y-4 w-full"
+              className="mx-auto px-6 py-8 mb-0 space-y-4 w-7/12"
             >
               <p className="text-lg font-medium">Sign Up - Set 2FA</p>
               <p className="max-w-md mx-auto text-center text-gray-500">
@@ -63,13 +63,13 @@ const SetUp2FA = ({ email, qrCode }) => {
 
               <button
                 type="submit"
-                className="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg"
+                className="block w-full px-5 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg"
               >
                 Submit
               </button>
             </form>
 
-            <div className="mx-auto w-full flex justify-center py-20 mb-0 rounded-lg bg-indigo-400">
+            <div className="w-5/12 flex justify-center py-20 mb-0 rounded-lg bg-indigo-400">
               <img
                 src={qrCode}
                 alt="qr-code"

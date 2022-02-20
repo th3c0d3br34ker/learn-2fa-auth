@@ -33,7 +33,7 @@ const signUp2FAApiRoute = async (req, res) => {
     req.session.user = sanitizeUser(user);
     await req.session.save();
 
-    res.redirect("/");
+    res.redirect("/private");
     res.end();
   } catch (err) {
     console.error(err);

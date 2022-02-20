@@ -7,8 +7,8 @@ import Layout from "container/layout";
 const LogInPage = () => (
   <Layout title="Log In">
     <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-      <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-3xl font-extrabold text-center text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-indigo-300 to-blue-500">
           2FA Authenticator
         </h1>
 
@@ -71,17 +71,19 @@ const LogInPage = () => (
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg"
-          >
-            Log In
-          </button>
+          <div className="flex w-full justify-end">
+            <button
+              type="submit"
+              className="block px-5 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg"
+            >
+              Log In
+            </button>
+          </div>
 
           <p className="text-sm text-center text-gray-500">
             Don&apos;t have an account?{" "}
             <Link href="/auth/signup">
-              <a className="underline text-indigo-900 font-bold">Sign Up</a>
+              <a className="underline text-indigo-700 font-bold">Sign Up</a>
             </Link>
           </p>
         </form>

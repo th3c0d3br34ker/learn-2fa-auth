@@ -1,75 +1,63 @@
-import Link from "next/link";
-import Image from "next/image";
-import { withIronSessionSsr } from "iron-session/next";
-
-// project imports
-import { sessionOptions } from "lib/session";
+import FAQItem from "container/faq-item";
 import Layout from "container/layout";
 
-const IndexPage = ({ user }) => (
-  <Layout title="Home">
-    <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-      <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">
-          2FA Authenticator
+const IndexPage = () => (
+  <Layout title="2FA Authenticator" header>
+    <section className="my-14">
+      <div className="max-w-3xl mx-auto text-center">
+        <h1 className="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-indigo-300 to-blue-500">
+          Two-Factor Authentication
         </h1>
-        <p className="max-w-md mx-auto mt-4 text-center text-gray-500">
-          This is an Example site for 2FA Login.
+
+        <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
+          illo tenetur fuga ducimus numquam ea!
         </p>
-
-        <div className="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl">
-          <label htmlFor="email" className="text-sm font-medium">
-            Email
-          </label>
-          <div className="relative mt-1">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="w-full p-4 pr-12 text-sm rounded-lg shadow-lg"
-              defaultValue={user.email}
-              disabled
-            />
-            <span className="absolute inset-y-0 inline-flex items-center right-4">
-              <Image
-                src="/icons/email.svg"
-                width={16}
-                height={16}
-                alt="email-symbol"
-              />
-            </span>
-          </div>
-
-          <Link href="/api/logout">
-            <a className="block w-full px-5 py-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg">
-              Log Out
-            </a>
-          </Link>
-        </div>
       </div>
+    </section>
+
+    <div className="max-w-3xl mx-auto space-y-4">
+      <FAQItem
+        summary="What is Two-Factor Authentication?"
+        details="Two-Factor Authentication (2FA) is an extra layer of security used to make sure that people trying to gain access to an online account are who they say they are. First, a user will enter their username and a password. Then, instead of immediately gaining access, they will be required to provide another piece of information."
+      />
+
+      <FAQItem
+        summary="What is Time-based one-time password?"
+        details="Time-based one-time password (TOTP) is a computer algorithm that generates a one-time password (OTP) that uses the current time as a source of uniqueness. As an extension of the HMAC-based one-time password algorithm (HOTP), it has been adopted as Internet Engineering Task Force (IETF) standard RFC 6238."
+      />
+
+      <FAQItem
+        summary="What is a QR code?"
+        details="QR code (an initialism for quick response code) is a type of matrix barcode (or two-dimensional barcode) invented in 1994 by the Japanese automotive company Denso Wave. A barcode is a machine-readable optical label that can contain information about the item to which it is attached. In practice, QR codes often contain data for a locator, identifier, or tracker that points to a website or application. ."
+      />
+
+      <FAQItem
+        summary="What are the types of Two-Factor Authentications?"
+        details={[
+          "Let’s have a peek at look popular websites and applications are implementing 2FA these days.",
+          "Email-based 2FA",
+          "SMS-based 2FA",
+          "Software token/TOTP based 2FA",
+          "Bio-metrics based 2FA",
+          "As a Push Notification",
+          "Hardware Token-based 2FA",
+        ]}
+      />
+
+      <FAQItem
+        summary="What are the application with 2FA?"
+        details={[
+          "An application that uses 2FA",
+          "Google Authenticator",
+          "Microsoft Authenticator",
+          "Twilio Authy",
+          "FreeOTP",
+          "2FA Authenticator",
+        ]}
+      />
     </div>
   </Layout>
-);
-
-const myGetServerSideProps = async ({ req, res }) => {
-  const user = req.session.user;
-
-  if (!user) {
-    return {
-      redirect: {
-        destination: "/auth/login",
-      },
-    };
-  }
-
-  return {
-    props: { user: req.session.user },
-  };
-};
-
-export const getServerSideProps = withIronSessionSsr(
-  myGetServerSideProps,
-  sessionOptions
 );
 
 export default IndexPage;
