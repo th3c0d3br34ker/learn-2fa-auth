@@ -7,7 +7,7 @@
 ***
 ***
 *** To avoid retyping too much info. Do a search and replace for the following:
-*** github_username, repo_name, twitter_handle, email, project_title, project_description
+*** github_username, learn-2fa-auth, twitter_handle, email, project_title, project_description
 -->
 
 <!-- PROJECT SHIELDS -->
@@ -32,23 +32,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/th3c0d3br34ker/repo_name">
+  <a href="https://github.com/th3c0d3br34ker/learn-2fa-auth">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">project_title</h3>
+  <h3 align="center">2FA Authenticator</h3>
 
   <p align="center">
-    project_description
+      2FA Demo
     <br />
-    <a href="https://github.com/th3c0d3br34ker/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/th3c0d3br34ker/learn-2fa-auth"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/th3c0d3br34ker/repo_name">View Demo</a>
+    <a href="https://learn-2fa-auth.netlify.app/">View Demo</a>
     ·
-    <a href="https://github.com/th3c0d3br34ker/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/th3c0d3br34ker/learn-2fa-auth/issues">Report Bug</a>
     ·
-    <a href="https://github.com/th3c0d3br34ker/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/th3c0d3br34ker/learn-2fa-auth/issues">Request Feature</a>
   </p>
 </p>
 
@@ -70,7 +70,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -81,13 +80,13 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://learn-2fa-auth.netlify.app/)
 
 ### Built With
 
-- []()
-- []()
-- []()
+- [NextJS](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [MongoDB](https://www.mongodb.com/)
 
 <!-- GETTING STARTED -->
 
@@ -100,19 +99,26 @@ To get a local copy up and running follow these simple steps.
 This is an example of how to list things you need to use the software and how to install them.
 
 - npm
+
   ```sh
   npm install npm@latest -g
   ```
+
+- check the `.env` variables in [config](lib/config.js) file.
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/th3c0d3br34ker/repo_name.git
+   git clone https://github.com/th3c0d3br34ker/learn-2fa-auth.git
    ```
 2. Install NPM packages
    ```sh
    npm install
+   ```
+3. Start the dev server
+   ```sh
+   npm run dev
    ```
 
 <!-- USAGE EXAMPLES -->
@@ -121,14 +127,6 @@ This is an example of how to list things you need to use the software and how to
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-See the [open issues](https://github.com/th3c0d3br34ker/repo_name/issues) for a list of proposed features (and known issues).
-
 <!-- CONTRIBUTING -->
 
 ## Contributing
@@ -136,9 +134,9 @@ See the [open issues](https://github.com/th3c0d3br34ker/repo_name/issues) for a 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b feature/amazing-feature`)
+3. Commit your Changes (`git commit -m 'Add some amazing-feature'`)
+4. Push to the Branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 <!-- LICENSE -->
@@ -151,25 +149,24 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Acknowledgements
 
-- []()
-- []()
-- []()
+- [otplib](https://www.npmjs.com/package/otplib)
+- [This Tutorial by Shahed Nasser](https://github.com/shahednasser/node-2fa-tutorial)
 
 > Made with 💙 by Jainam Desai
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/th3c0d3br34ker/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/th3c0d3br34ker/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/th3c0d3br34ker/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/th3c0d3br34ker/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/th3c0d3br34ker/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/th3c0d3br34ker/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/th3c0d3br34ker/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/th3c0d3br34ker/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/th3c0d3br34ker/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/th3c0d3br34ker/repo_name/blob/master/LICENSE.txt
-[made-with-shield]: https://img.shields.io/github/languages/top/th3c0d3br34ker/repo_name?style=for-the-badge
-[made-with-url]: https://shields.io/github/languages/top/th3c0d3br34ker/repo_name.svg?style-for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/th3c0d3br34ker/learn-2fa-auth.svg?style=for-the-badge
+[contributors-url]: https://github.com/th3c0d3br34ker/learn-2fa-auth/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/th3c0d3br34ker/learn-2fa-auth.svg?style=for-the-badge
+[forks-url]: https://github.com/th3c0d3br34ker/learn-2fa-auth/network/members
+[stars-shield]: https://img.shields.io/github/stars/th3c0d3br34ker/learn-2fa-auth.svg?style=for-the-badge
+[stars-url]: https://github.com/th3c0d3br34ker/learn-2fa-auth/stargazers
+[issues-shield]: https://img.shields.io/github/issues/th3c0d3br34ker/learn-2fa-auth.svg?style=for-the-badge
+[issues-url]: https://github.com/th3c0d3br34ker/learn-2fa-auth/issues
+[license-shield]: https://img.shields.io/github/license/th3c0d3br34ker/learn-2fa-auth.svg?style=for-the-badge
+[license-url]: https://github.com/th3c0d3br34ker/learn-2fa-auth/blob/master/LICENSE.txt
+[made-with-shield]: https://img.shields.io/github/languages/top/th3c0d3br34ker/learn-2fa-auth?style=for-the-badge
+[made-with-url]: https://shields.io/github/languages/top/th3c0d3br34ker/learn-2fa-auth.svg?style-for-the-badge
 [product-screenshot]: images/screenshot.png

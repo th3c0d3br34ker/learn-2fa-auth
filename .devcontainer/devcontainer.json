@@ -15,7 +15,8 @@
     "esbenp.prettier-vscode",
     "github.copilot",
     "rangav.vscode-thunder-client",
-    "mongodb.mongodb-vscode"
+    "mongodb.mongodb-vscode",
+    "bradlc.vscode-tailwindcss"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
