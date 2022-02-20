@@ -54,13 +54,10 @@ const IndexPage = ({ user }) => (
 const myGetServerSideProps = async ({ req, res }) => {
   const user = req.session.user;
 
-  if (user === undefined) {
-    res.setHeader("location", "/auth/login");
-    res.statusCode = 302;
-    res.end();
+  if (!user) {
     return {
-      props: {
-        user: { isLoggedIn: false, login: "", avatarUrl: "" },
+      redirect: {
+        destination: "/auth/login",
       },
     };
   }

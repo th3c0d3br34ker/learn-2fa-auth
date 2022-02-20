@@ -33,6 +33,7 @@ const LogInPage = () => (
                 name="email"
                 className="w-full p-4 pr-12 text-sm rounded-lg shadow-lg"
                 placeholder="Enter Email"
+                required
                 autoFocus
               />
               <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -57,10 +58,11 @@ const LogInPage = () => (
                 id="code"
                 name="code"
                 placeholder="Enter Code"
+                required
               />
               <span className="absolute inset-y-0 inline-flex items-center right-4">
                 <Image
-                  src="/icons/at-symbol.svg"
+                  src="/icons/qr-code.svg"
                   width={16}
                   height={16}
                   alt="at-symbol"

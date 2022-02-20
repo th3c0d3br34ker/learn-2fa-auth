@@ -31,6 +31,7 @@ const SignUpPage = () => {
                   className="w-full p-4 pr-12 text-sm rounded-lg shadow-lg"
                   placeholder="Enter Email"
                   autoFocus
+                  required
                 />
                 <span className="absolute inset-y-0 inline-flex items-center right-4">
                   <Image
