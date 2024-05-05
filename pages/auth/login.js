@@ -82,8 +82,8 @@ const LogInPage = () => (
 
           <p className="text-sm text-center text-gray-500">
             Don&apos;t have an account?{" "}
-            <Link href="/auth/signup">
-              <a className="underline text-indigo-700 font-bold">Sign Up</a>
+            <Link href="/auth/signup" className="underline text-indigo-700 font-bold">
+              Sign Up
             </Link>
           </p>
         </form>
