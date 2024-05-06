@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef } from 'react';
 import { sessionOptions } from 'lib/session';
-import { getIronSession, withIronSessionSsr } from 'iron-session';
+import { getIronSession } from 'iron-session';
 
 // project imports
 import Layout from 'container/layout';

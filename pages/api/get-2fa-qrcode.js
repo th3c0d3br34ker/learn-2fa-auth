@@ -18,6 +18,8 @@ const get2FAQRCodeApiRoute = async (req, res) => {
       return res.json({ success: false, fallback: '/' });
     }
 
+    console.log('user', user);
+
     const keyuri = authenticator.keyuri(email, '2FA Server', user.secret);
 
     const qrCodeUrl = await QRCode.toDataURL(keyuri);

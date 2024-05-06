@@ -38,6 +38,7 @@ const SignUpPage = () => (
                   width={16}
                   height={16}
                   alt='email-symbol'
+                  priority={false}
                 />
               </span>
             </div>
@@ -55,6 +56,7 @@ const SignUpPage = () => (
             <Link
               href='/auth/login'
               className='underline text-indigo-700 font-bold'
+              prefetch={false}
             >
               Login
             </Link>
