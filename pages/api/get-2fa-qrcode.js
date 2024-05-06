@@ -1,11 +1,10 @@
 import { authenticator } from 'otplib';
 import QRCode from 'qrcode';
-import { withIronSessionApiRoute } from 'iron-session/next';
 
 // project imports
 import { getUserWithEmail } from 'api-lib/database/user';
 import { connectToDatabase } from 'api-lib/middlewares/database';
-import { sessionOptions } from 'lib/session';
+// import { sessionOptions } from 'lib/session';
 
 const get2FAQRCodeApiRoute = async (req, res) => {
   try {
@@ -33,4 +32,4 @@ const get2FAQRCodeApiRoute = async (req, res) => {
   }
 };
 
-export default withIronSessionApiRoute(get2FAQRCodeApiRoute, sessionOptions);
+export default get2FAQRCodeApiRoute;

@@ -1,5 +1,5 @@
 import { authenticator } from 'otplib';
-import { withIronSessionApiRoute } from 'iron-session/next';
+import { getIronSession } from 'iron-session';
 
 // project imports
 import {
@@ -13,6 +13,8 @@ import { sanitizeUser } from 'api-lib/auth';
 
 const signUpApiRoute = async (req, res) => {
   try {
+    const session = await getIronSession(req, res, sessionOptions);
+
     const { email } = req.body;
 
     if (!email) {
@@ -42,8 +44,8 @@ const signUpApiRoute = async (req, res) => {
       throw new Error('User not created');
     }
 
-    req.session.user = sanitizeUser(user);
-    await req.session.save();
+    session.user = sanitizeUser(user);
+    await session.save();
 
     res.redirect('/auth/setup-2fa');
     res.end();
@@ -56,4 +58,4 @@ const signUpApiRoute = async (req, res) => {
   }
 };
 
-export default withIronSessionApiRoute(signUpApiRoute, sessionOptions);
+export default signUpApiRoute;

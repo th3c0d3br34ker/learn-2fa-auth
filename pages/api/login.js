@@ -1,9 +1,9 @@
-import { withIronSessionApiRoute } from 'iron-session/next';
+// import { getIronSession } from 'iron-session';
 
 // project imports
 import { getUserWithEmail } from 'api-lib/database/user';
 import { connectToDatabase } from 'api-lib/middlewares/database';
-import { sessionOptions } from 'lib/session';
+// import { sessionOptions } from 'lib/session';
 import { sanitizeUser, verifyUser } from 'api-lib/auth';
 
 const loginApiRoute = async (req, res) => {
@@ -48,4 +48,4 @@ const loginApiRoute = async (req, res) => {
   }
 };
 
-export default withIronSessionApiRoute(loginApiRoute, sessionOptions);
+export default loginApiRoute;

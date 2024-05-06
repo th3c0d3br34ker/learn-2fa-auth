@@ -1,4 +1,4 @@
-import { withIronSessionApiRoute } from 'iron-session/next';
+import { getIronSession } from 'iron-session';
 
 // project imports
 import { getUserWithEmail } from 'api-lib/database/user';
@@ -8,6 +8,8 @@ import { sanitizeUser, verifyUser } from 'api-lib/auth';
 
 const signUp2FAApiRoute = async (req, res) => {
   try {
+    const session = await getIronSession(req, res, sessionOptions);
+
     const { email, code } = req.body;
 
     if (!email || !code) {
@@ -30,8 +32,8 @@ const signUp2FAApiRoute = async (req, res) => {
       });
     }
 
-    req.session.user = sanitizeUser(user);
-    await req.session.save();
+    session.user = sanitizeUser(user);
+    await session.save();
 
     res.redirect('/private');
     res.end();
@@ -44,4 +46,4 @@ const signUp2FAApiRoute = async (req, res) => {
   }
 };
 
-export default withIronSessionApiRoute(signUp2FAApiRoute, sessionOptions);
+export default signUp2FAApiRoute;

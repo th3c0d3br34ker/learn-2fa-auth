@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { withIronSessionSsr } from 'iron-session/next';
+import { getIronSession } from 'iron-session';
 
 // project imports
 import { sessionOptions } from 'lib/session';
@@ -44,8 +44,10 @@ const PrivatePage = ({ user }) => (
   </Layout>
 );
 
-const myGetServerSideProps = async ({ req, res }) => {
-  const user = req.session.user;
+export const getServerSideProps = async ({ req, res }) => {
+  const session = await getIronSession(req, res, sessionOptions);
+
+  const user = session.user;
 
   if (!user) {
     return {
@@ -56,13 +58,8 @@ const myGetServerSideProps = async ({ req, res }) => {
   }
 
   return {
-    props: { user: req.session.user },
+    props: { user: session.user },
   };
 };
-
-export const getServerSideProps = withIronSessionSsr(
-  myGetServerSideProps,
-  sessionOptions
-);
 
 export default PrivatePage;

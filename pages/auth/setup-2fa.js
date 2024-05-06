@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef } from 'react';
 import { sessionOptions } from 'lib/session';
-import { withIronSessionSsr } from 'iron-session/next';
+import { getIronSession, withIronSessionSsr } from 'iron-session';
 
 // project imports
 import Layout from 'container/layout';
@@ -154,8 +154,9 @@ const SetUp2FA = ({ email, qrCode }) => {
   );
 };
 
-const myGetServerSideProps = async ({ req }) => {
-  const user = req.session.user;
+export const getServerSideProps = async ({ req, res }) => {
+  const session = await getIronSession(req, res, sessionOptions);
+  const user = session.user;
 
   if (!user) {
     return {
@@ -165,7 +166,7 @@ const myGetServerSideProps = async ({ req }) => {
     };
   }
 
-  const { email } = req.session.user;
+  const { email } = session.user;
 
   const response = await fetch(`${API_URI}/api/get-2fa-qrcode?email=${email}`);
 
@@ -186,10 +187,5 @@ const myGetServerSideProps = async ({ req }) => {
     },
   };
 };
-
-export const getServerSideProps = withIronSessionSsr(
-  myGetServerSideProps,
-  sessionOptions
-);
 
 export default SetUp2FA;

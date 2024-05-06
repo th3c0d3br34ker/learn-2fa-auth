@@ -1,11 +1,13 @@
-import { withIronSessionApiRoute } from 'iron-session/next';
+import { getIronSession } from 'iron-session';
 
 // project imports
 import { sessionOptions } from 'lib/session';
 
 const logoutApiRoute = async (req, res) => {
   try {
-    req.session.destroy();
+    const session = await getIronSession(req, res, sessionOptions);
+
+    session.destroy();
 
     res.redirect('/');
     res.end();
@@ -18,4 +20,4 @@ const logoutApiRoute = async (req, res) => {
   }
 };
 
-export default withIronSessionApiRoute(logoutApiRoute, sessionOptions);
+export default logoutApiRoute;
