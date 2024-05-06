@@ -1,19 +1,19 @@
-import { withIronSessionApiRoute } from "iron-session/next";
+import { withIronSessionApiRoute } from 'iron-session/next';
 
 // project imports
-import { sessionOptions } from "lib/session";
+import { sessionOptions } from 'lib/session';
 
 const logoutApiRoute = async (req, res) => {
   try {
     req.session.destroy();
 
-    res.redirect("/");
+    res.redirect('/');
     res.end();
   } catch (err) {
     console.error(err);
     res.status(500).json({
       success: false,
-      message: "Something went wrong",
+      message: 'Something went wrong',
     });
   }
 };

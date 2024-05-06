@@ -1,15 +1,15 @@
-import { authenticator } from "otplib";
-import { withIronSessionApiRoute } from "iron-session/next";
+import { authenticator } from 'otplib';
+import { withIronSessionApiRoute } from 'iron-session/next';
 
 // project imports
 import {
   deleteUser,
   getUserWithEmail,
   insertUser,
-} from "api-lib/database/user";
-import { connectToDatabase } from "api-lib/middlerwares/database";
-import { sessionOptions } from "lib/session";
-import { sanitizeUser } from "api-lib/auth";
+} from 'api-lib/database/user';
+import { connectToDatabase } from 'api-lib/middlewares/database';
+import { sessionOptions } from 'lib/session';
+import { sanitizeUser } from 'api-lib/auth';
 
 const signUpApiRoute = async (req, res) => {
   try {
@@ -18,7 +18,7 @@ const signUpApiRoute = async (req, res) => {
     if (!email) {
       return res.status(400).json({
         success: false,
-        message: "Email is required",
+        message: 'Email is required',
       });
     }
 
@@ -39,19 +39,19 @@ const signUpApiRoute = async (req, res) => {
     const user = await insertUser(db, { email, secret });
 
     if (!user) {
-      throw new Error("User not created");
+      throw new Error('User not created');
     }
 
     req.session.user = sanitizeUser(user);
     await req.session.save();
 
-    res.redirect("/auth/setup-2fa");
+    res.redirect('/auth/setup-2fa');
     res.end();
   } catch (err) {
     console.error(err);
     res.status(500).json({
       success: false,
-      message: "Something went wrong",
+      message: 'Something went wrong',
     });
   }
 };

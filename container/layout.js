@@ -1,8 +1,8 @@
-import Head from "next/head";
+import Head from 'next/head';
 
 // project imports
-import Footer from "./footer";
-import Header from "./header";
+import Footer from './footer';
+import Header from './header';
 
 const Layout = (props) => {
   const { title, header, isLoggedIn, children } = props;

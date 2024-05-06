@@ -1,11 +1,11 @@
-import { authenticator } from "otplib";
-import QRCode from "qrcode";
-import { withIronSessionApiRoute } from "iron-session/next";
+import { authenticator } from 'otplib';
+import QRCode from 'qrcode';
+import { withIronSessionApiRoute } from 'iron-session/next';
 
 // project imports
-import { getUserWithEmail } from "api-lib/database/user";
-import { connectToDatabase } from "api-lib/middlerwares/database";
-import { sessionOptions } from "lib/session";
+import { getUserWithEmail } from 'api-lib/database/user';
+import { connectToDatabase } from 'api-lib/middlewares/database';
+import { sessionOptions } from 'lib/session';
 
 const get2FAQRCodeApiRoute = async (req, res) => {
   try {
@@ -16,10 +16,10 @@ const get2FAQRCodeApiRoute = async (req, res) => {
     const user = await getUserWithEmail(db, { email });
 
     if (!user) {
-      return res.json({ success: false, fallback: "/" });
+      return res.json({ success: false, fallback: '/' });
     }
 
-    const keyuri = authenticator.keyuri(email, "2FA Server", user.secret);
+    const keyuri = authenticator.keyuri(email, '2FA Server', user.secret);
 
     const qrCodeUrl = await QRCode.toDataURL(keyuri);
 
@@ -28,7 +28,7 @@ const get2FAQRCodeApiRoute = async (req, res) => {
     console.error(err);
     res.status(500).json({
       success: false,
-      message: "Something went wrong",
+      message: 'Something went wrong',
     });
   }
 };

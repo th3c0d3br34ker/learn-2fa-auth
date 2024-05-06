@@ -34,6 +34,7 @@
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.1",
     "eslint-config-next": "^14.2.3",
+    "mongodb-memory-server": "^9.2.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "unimported": "^1.31.1"

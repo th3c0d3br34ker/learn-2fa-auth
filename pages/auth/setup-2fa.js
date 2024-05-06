@@ -54,7 +54,14 @@ const CodeInput = ({ id, name, inputRef }) => {
 };
 
 const SetUp2FA = ({ email, qrCode }) => {
-  const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+  const inputRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
 
   return (
     <Layout title='Set Up 2FA'>
@@ -65,14 +72,25 @@ const SetUp2FA = ({ email, qrCode }) => {
           </h1>
 
           <div className='flex flex-row items-center justify-center rounded-lg shadow-2xl mt-6'>
-            <form action='/api/sign-up-2fa' method='POST' className='mx-auto px-6 py-8 w-7/12'>
+            <form
+              action='/api/sign-up-2fa'
+              method='POST'
+              className='mx-auto px-6 py-8 w-7/12'
+            >
               <p className='text-lg font-medium'>Sign Up - Set 2FA</p>
               <p className='max-w-md mx-auto text-center text-gray-500'>
-                Scan the QR Code in the Authenticator app then enter the code that you see in the app in the text field
-                and click Submit.
+                Scan the QR Code in the Authenticator app then enter the code
+                that you see in the app in the text field and click Submit.
               </p>
 
-              <input type='email' className='form-control' id='email' name='email' defaultValue={email} hidden />
+              <input
+                type='email'
+                className='form-control'
+                id='email'
+                name='email'
+                defaultValue={email}
+                hidden
+              />
 
               <div>
                 <label htmlFor='code' className='text-sm font-medium'>
@@ -80,12 +98,36 @@ const SetUp2FA = ({ email, qrCode }) => {
                 </label>
                 <div className='relative mt-1'>
                   <div className='flex justify-center m-2'>
-                    <CodeInput id='digit1' name='digit1' inputRef={inputRefs[0]} />
-                    <CodeInput id='digit2' name='digit2' inputRef={inputRefs[1]} />
-                    <CodeInput id='digit3' name='digit3' inputRef={inputRefs[2]} />
-                    <CodeInput id='digit4' name='digit4' inputRef={inputRefs[3]} />
-                    <CodeInput id='digit5' name='digit5' inputRef={inputRefs[4]} />
-                    <CodeInput id='digit6' name='digit6' inputRef={inputRefs[5]} />
+                    <CodeInput
+                      id='digit1'
+                      name='digit1'
+                      inputRef={inputRefs[0]}
+                    />
+                    <CodeInput
+                      id='digit2'
+                      name='digit2'
+                      inputRef={inputRefs[1]}
+                    />
+                    <CodeInput
+                      id='digit3'
+                      name='digit3'
+                      inputRef={inputRefs[2]}
+                    />
+                    <CodeInput
+                      id='digit4'
+                      name='digit4'
+                      inputRef={inputRefs[3]}
+                    />
+                    <CodeInput
+                      id='digit5'
+                      name='digit5'
+                      inputRef={inputRefs[4]}
+                    />
+                    <CodeInput
+                      id='digit6'
+                      name='digit6'
+                      inputRef={inputRefs[5]}
+                    />
                   </div>
                 </div>
               </div>
@@ -99,7 +141,11 @@ const SetUp2FA = ({ email, qrCode }) => {
             </form>
 
             <div class='w-1/2 mx-auto bg-indigo-400 rounded-lg p-8'>
-              <img src={qrCode} alt='qr-code' class='w-full rounded-lg border-4 border-indigo-600 shadow-lg' />
+              <img
+                src={qrCode}
+                alt='qr-code'
+                class='w-full rounded-lg border-4 border-indigo-600 shadow-lg'
+              />
             </div>
           </div>
         </div>
@@ -141,6 +187,9 @@ const myGetServerSideProps = async ({ req }) => {
   };
 };
 
-export const getServerSideProps = withIronSessionSsr(myGetServerSideProps, sessionOptions);
+export const getServerSideProps = withIronSessionSsr(
+  myGetServerSideProps,
+  sessionOptions
+);
 
 export default SetUp2FA;

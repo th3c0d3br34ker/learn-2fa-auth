@@ -1,4 +1,4 @@
-import { authenticator } from "otplib";
+import { authenticator } from 'otplib';
 
 export const sanitizeUser = (user) => {
   const newUser = { id: user._id, ...user };

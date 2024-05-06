@@ -1,5 +1,5 @@
-import { MongoClient } from "mongodb";
-import { MONGODB_URI } from "lib/config";
+import { MongoClient } from 'mongodb';
+import { MONGODB_URI } from 'lib/config';
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
@@ -13,14 +13,14 @@ let indexesCreated = false;
 async function createIndexes(db) {
   await Promise.all([
     db
-      .collection("users")
+      .collection('users')
       .createIndex({ expireAt: -1 }, { expireAfterSeconds: 0 }),
   ]);
   indexesCreated = true;
 }
 
 if (!MONGODB_URI) {
-  throw new Error("MONGODB_URI is not defined");
+  throw new Error('MONGODB_URI is not defined');
 }
 
 export async function getMongoClient() {
@@ -36,7 +36,7 @@ export async function getMongoClient() {
 
 export async function connectToDatabase() {
   const client = await getMongoClient();
-  const db = client.db("2fa-auth");
+  const db = client.db('2fa-auth');
   if (!indexesCreated) {
     await createIndexes(db);
   }

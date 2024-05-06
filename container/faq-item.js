@@ -10,7 +10,12 @@ const FAQItem = ({ summary, details }) => (
         viewBox='0 0 24 24'
         stroke='currentColor'
       >
-        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='3' d='M19 9l-7 7-7-7' />
+        <path
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth='3'
+          d='M19 9l-7 7-7-7'
+        />
       </svg>
     </summary>
 
@@ -20,7 +25,9 @@ const FAQItem = ({ summary, details }) => (
           ? details.map((detail, index) => (
               <div key={index}>
                 {index === 0 && detail}
-                <ul className='list-disc'>{index !== 0 && <li>{detail}</li>}</ul>
+                <ul className='list-disc'>
+                  {index !== 0 && <li>{detail}</li>}
+                </ul>
               </div>
             ))
           : details}
