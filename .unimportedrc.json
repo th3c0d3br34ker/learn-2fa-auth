@@ -1,9 +1,0 @@
-{
-  "ignoreUnresolved": [],
-  "ignoreUnused": [
-    "next",
-    "react",
-    "react-dom"
-  ],
-  "ignoreUnimported": []
-}
