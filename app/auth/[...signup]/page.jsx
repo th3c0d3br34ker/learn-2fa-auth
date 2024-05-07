@@ -1,5 +1,5 @@
-import SetUpTwoFactorPage from '../../../pages/auth/setup-2fa';
-import SignUpPage from '../../../pages/auth/signup';
+import SetUpTwoFactorPage from '../../../containers/auth/setup-2fa';
+import SignUpPage from '../../../containers/auth/signup';
 
 export default function SignUp({ params }) {
   const { signup } = params;
