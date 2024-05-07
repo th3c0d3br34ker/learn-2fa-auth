@@ -59,6 +59,20 @@ export async function setUp2FA(formData) {
     formData.get(`digit${i + 1}`)
   ).join('');
 
+  session.is_authenticated = true;
+
   await session.save();
   revalidatePath('/signup/setup-2fa');
+}
+
+export async function logout() {
+  'use server'
+
+  const session = await getSession();
+
+  if (session.is_authenticated) {
+    session.is_authenticated = false;
+    await session.destroy();
+  }
+
 }

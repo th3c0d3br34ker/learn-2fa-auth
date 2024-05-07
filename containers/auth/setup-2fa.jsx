@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { getSession, setUp2FA } from '../../app/auth/actions';
+import { getSession, setUp2FA } from '../../app/api-lib/actions';
 import PinInput from '../../components/pin-input';
 
 /* eslint-disable @next/next/no-img-element */
@@ -8,6 +8,10 @@ const SetUpTwoFactorPage = async ({ qrCode }) => {
 
   if (!session.email) {
     redirect('/auth/signup');
+  }
+
+  if (session.is_authenticated) {
+    redirect('/protected');
   }
 
   return (

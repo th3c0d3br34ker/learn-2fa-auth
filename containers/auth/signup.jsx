@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { signUp } from '../../app/auth/actions';
+import { signUp } from '../../app/api-lib/actions';
 import { sessionOptions } from '../../helpers/lib';
 
 const getSessionData = async () => {

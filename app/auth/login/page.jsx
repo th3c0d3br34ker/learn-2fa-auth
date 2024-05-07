@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { getSession, login } from '../actions';
+import { getSession, login } from '../../api-lib/actions';
 
 const LogInPage = async () => {
   const session = await getSession();
 
   if (session.is_authenticated) {
-    redirect('/private');
+    redirect('/protected');
   }
 
   return (
