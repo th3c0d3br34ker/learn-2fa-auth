@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
 import { getSession, setUp2FA } from '../../app/api-lib/actions';
 import PinInput from '../../components/pin-input';
+import { generateQRCode } from '../../prisma/lib';
 
 /* eslint-disable @next/next/no-img-element */
-const SetUpTwoFactorPage = async ({ qrCode }) => {
+const SetUpTwoFactorPage = async () => {
   const session = await getSession();
 
   if (!session.email) {
@@ -14,6 +15,10 @@ const SetUpTwoFactorPage = async ({ qrCode }) => {
     redirect('/protected');
   }
 
+  const setUp2FAForUser = setUp2FA.bind(null, session.email)
+
+  const qrCode = await generateQRCode({ email: session.email });
+
   return (
     <div className='max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8'>
       <div className='max-w-3xl mx-auto'>
@@ -22,21 +27,12 @@ const SetUpTwoFactorPage = async ({ qrCode }) => {
         </h1>
 
         <div className='flex flex-row items-center justify-center rounded-lg shadow-2xl mt-6'>
-          <form action={setUp2FA} className='mx-auto px-6 py-8 w-7/12'>
+          <form action={setUp2FAForUser} className='mx-auto px-6 py-8 w-7/12'>
             <p className='text-lg font-medium'>Sign Up - Set 2FA</p>
             <p className='max-w-md mx-auto my-2 text-gray-500'>
               Scan the QR Code in the Authenticator app then enter the code that
               you see in the app in the text field and click Submit.
             </p>
-
-            <input
-              type='email'
-              className='form-control'
-              id='email'
-              name='email'
-              defaultValue={session.email}
-              hidden
-            />
 
             <div>
               <label htmlFor='code' className='text-sm font-medium'>

@@ -1,7 +1,8 @@
 import { getIronSession } from 'iron-session';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
-import { defaultSession, sessionOptions } from '../../helpers/lib';
+import { defaultSession, sessionOptions } from '../../helpers/config';
+import { createUser, verifyCode } from '../../prisma/lib';
 
 export async function getSession() {
   const session = await getIronSession(cookies(), sessionOptions);
@@ -21,9 +22,10 @@ export async function login(formData) {
 
   session.email = formData.get('email');
 
-  if (formData.get('code') === process.env.NEXT_PUBLIC_AUTH_CODE) {
-    session.is_authenticated = true;
-  }
+  session.is_authenticated = await verifyCode({
+    email: session.email,
+    code: formData.get('code'),
+  });
 
   await session.save();
   revalidatePath('/auth/login');
@@ -35,14 +37,18 @@ export async function signUp(formData) {
 
   const session = await getSession();
 
-  session.email = formData.get('email');
+  const email = formData.get('email');
+
+  session.email = email;
+
+  await createUser({ email });
 
   await session.save();
   revalidatePath('/signup/setup-2fa');
 }
 
 /** @param {FormData} formData */
-export async function setUp2FA(formData) {
+export async function setUp2FA(userEmail, formData) {
   'use server';
 
   const session = await getSession();
@@ -51,22 +57,25 @@ export async function setUp2FA(formData) {
     revalidatePath('/signup');
   }
 
-  if (session.email !== formData.get('email')) {
-    session.email = formData.get('email');
+  if (session.email !== userEmail) {
+    throw new Error('Unauthorized');
   }
 
   session.code = Array.from({ length: 6 }, (_, i) =>
     formData.get(`digit${i + 1}`)
   ).join('');
 
-  session.is_authenticated = true;
+  session.is_authenticated = await verifyCode({
+    email: session.email,
+    code: session.code,
+  });
 
   await session.save();
   revalidatePath('/signup/setup-2fa');
 }
 
 export async function logout() {
-  'use server'
+  'use server';
 
   const session = await getSession();
 
@@ -74,5 +83,4 @@ export async function logout() {
     session.is_authenticated = false;
     await session.destroy();
   }
-
 }

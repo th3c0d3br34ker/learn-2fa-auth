@@ -2,7 +2,7 @@ import { SessionOptions } from 'iron-session';
 
 /** @type {SessionOptions} */
 export const sessionOptions = {
-  password: 'testtesttesttesttesttesttesttesttesttesttesttesttest',
+  password: process.env.SESSION_SECRET,
   cookieName: '2FA_SESSION',
   cookieOptions: {
     secure: process.env.NODE_ENV === 'production',
