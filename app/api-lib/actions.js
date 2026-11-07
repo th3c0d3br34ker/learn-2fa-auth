@@ -5,7 +5,7 @@ import { defaultSession, sessionOptions } from '../../helpers/config';
 import { createUser, verifyCode } from '../../prisma/lib';
 
 export async function getSession() {
-  const session = await getIronSession(cookies(), sessionOptions);
+  const session = await getIronSession(await cookies(), sessionOptions);
 
   if (!session) {
     Object.assign(session, defaultSession);

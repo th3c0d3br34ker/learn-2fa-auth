@@ -1,16 +1,11 @@
 import SetUpTwoFactorPage from '../../../containers/auth/setup-2fa';
 import SignUpPage from '../../../containers/auth/signup';
 
-export default function SignUp({ params }) {
-  const { signup } = params;
+export default async function SignUp({ params }) {
+  const { signup } = await params;
 
-  let step = null;
-
-  if (Array.isArray(signup) && signup.length === 2) {
-    step = signup.pop();
-  }
-
-  step = step || 'register';
+  const step =
+    Array.isArray(signup) && signup.length === 2 ? signup[1] : 'register';
 
   switch (step) {
     case 'register':
